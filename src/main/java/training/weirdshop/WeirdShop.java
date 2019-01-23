@@ -15,7 +15,10 @@ class WeirdShop {
     }
 
     private void updateItemSellIn(Item item) {
-        if (!isGoldCoin(item)) {
+        if (isGoldCoin(item)) {
+            // "sell-in" never changes for Gold Coins
+        }
+        else {
             item.sellIn = item.sellIn - 1;
         }
     }
