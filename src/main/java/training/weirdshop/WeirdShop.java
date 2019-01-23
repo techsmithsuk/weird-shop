@@ -21,14 +21,7 @@ class WeirdShop {
     }
 
     private void updateItemQuality(Item item) {
-        if (!isAgedBrie(item)
-                && !isBackstagePass(item)) {
-            if (item.quality > 0) {
-                if (!isGoldCoin(item)) {
-                    item.quality = item.quality - 1;
-                }
-            }
-        } else {
+        if (isAgedBrie(item) || isBackstagePass(item)) {
             if (item.quality < 50) {
                 item.quality = item.quality + 1;
 
@@ -44,6 +37,13 @@ class WeirdShop {
                             item.quality = item.quality + 1;
                         }
                     }
+                }
+            }
+        }
+        else {
+            if (item.quality > 0) {
+                if (!isGoldCoin(item)) {
+                    item.quality = item.quality - 1;
                 }
             }
         }
