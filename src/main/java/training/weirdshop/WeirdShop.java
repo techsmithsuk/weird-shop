@@ -45,6 +45,9 @@ class WeirdShop {
         if (hasSellByDatePassed(item)) {
             change = change * 2;
         }
+        if (isPremium(item)) {
+            change = change * 2;
+        }
         item.quality = item.quality + change;
     }
 
@@ -61,6 +64,10 @@ class WeirdShop {
             } else {
                 change = 1;
             }
+
+            if (isPremium(item)) {
+                change = change * 2;
+            }
             item.quality = item.quality + change;
         }
     }
@@ -68,6 +75,9 @@ class WeirdShop {
     private void updateOtherItemQuality(Item item) {
         int change = -1;
         if (hasSellByDatePassed(item)) {
+            change = change * 2;
+        }
+        if (isPremium(item)) {
             change = change * 2;
         }
         item.quality = item.quality + change;
@@ -88,15 +98,19 @@ class WeirdShop {
         return item.sellIn < 0;
     }
 
+    private boolean isPremium(Item item) {
+        return item.name.contains("Premium");
+    }
+
     private boolean isAgedBrie(Item item) {
-        return item.name.equals("Aged Brie");
+        return item.name.contains("Aged Brie");
     }
 
     private boolean isBackstagePass(Item item) {
-        return item.name.equals("Backstage Pass");
+        return item.name.contains("Backstage Pass");
     }
 
     private boolean isGoldCoin(Item item) {
-        return item.name.equals("Gold Coin");
+        return item.name.contains("Gold Coin");
     }
 }
