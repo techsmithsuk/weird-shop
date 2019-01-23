@@ -41,7 +41,7 @@ class WeirdShop {
     }
 
     private void updateAgedBrieQuality(Item item) {
-        if (item.sellIn < 0) {
+        if (hasSellByDatePassed(item)) {
             item.quality = item.quality + 2;
         }
         else {
@@ -50,7 +50,7 @@ class WeirdShop {
     }
 
     private void updateBackstagePassQuality(Item item) {
-        if (item.sellIn < 0) {
+        if (hasSellByDatePassed(item)) {
             item.quality = 0;
         }
         else if (item.sellIn <= 5) {
@@ -65,7 +65,7 @@ class WeirdShop {
     }
 
     private void updateOtherItemQuality(Item item) {
-        if (item.sellIn < 0) {
+        if (hasSellByDatePassed(item)) {
             item.quality = item.quality - 2;
         }
         else {
@@ -82,6 +82,10 @@ class WeirdShop {
                 item.quality = 50;
             }
         }
+    }
+
+    private boolean hasSellByDatePassed(Item item) {
+        return item.sellIn < 0;
     }
 
     private boolean isAgedBrie(Item item) {
