@@ -41,36 +41,36 @@ class WeirdShop {
     }
 
     private void updateAgedBrieQuality(Item item) {
+        int change = 1;
         if (hasSellByDatePassed(item)) {
-            item.quality = item.quality + 2;
+            change = change * 2;
         }
-        else {
-            item.quality = item.quality + 1;
-        }
+        item.quality = item.quality + change;
     }
 
     private void updateBackstagePassQuality(Item item) {
         if (hasSellByDatePassed(item)) {
             item.quality = 0;
         }
-        else if (item.sellIn <= 5) {
-            item.quality = item.quality + 3;
-        }
-        else if (item.sellIn <= 10) {
-            item.quality = item.quality + 2;
-        }
         else {
-            item.quality = item.quality + 1;
+            int change;
+            if (item.sellIn <= 5) {
+                change = 3;
+            } else if (item.sellIn <= 10) {
+                change = 2;
+            } else {
+                change = 1;
+            }
+            item.quality = item.quality + change;
         }
     }
 
     private void updateOtherItemQuality(Item item) {
+        int change = -1;
         if (hasSellByDatePassed(item)) {
-            item.quality = item.quality - 2;
+            change = change * 2;
         }
-        else {
-            item.quality = item.quality - 1;
-        }
+        item.quality = item.quality + change;
     }
 
     private void enforceQualityLimit(Item item) {
