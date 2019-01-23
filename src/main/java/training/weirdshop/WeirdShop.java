@@ -53,14 +53,12 @@ class WeirdShop {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
                 }
+            } else if (isBackstagePass(item)) {
+                item.quality = 0;
             } else {
-                if (isBackstagePass(item)) {
-                    item.quality = 0;
-                } else {
-                    if (item.quality > 0) {
-                        if (!isGoldCoin(item)) {
-                            item.quality = item.quality - 1;
-                        }
+                if (item.quality > 0) {
+                    if (!isGoldCoin(item)) {
+                        item.quality = item.quality - 1;
                     }
                 }
             }
