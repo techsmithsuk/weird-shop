@@ -21,17 +21,17 @@ class WeirdShop {
     }
 
     private void updateItemQuality(Item item) {
-        if (isAgedBrie(item) || isBackstagePass(item)) {
+        if (isAgedBrie(item)) {
             item.quality = item.quality + 1;
+            
+        } else if (isBackstagePass(item)) {
+            item.quality = item.quality + 1;
+            if (item.sellIn <= 10) {
+                item.quality = item.quality + 1;
+            }
 
-            if (isBackstagePass(item)) {
-                if (item.sellIn <= 10) {
-                    item.quality = item.quality + 1;
-                }
-
-                if (item.sellIn <= 5) {
-                    item.quality = item.quality + 1;
-                }
+            if (item.sellIn <= 5) {
+                item.quality = item.quality + 1;
             }
         }
         else {
