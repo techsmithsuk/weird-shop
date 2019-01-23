@@ -54,14 +54,14 @@ class WeirdShop {
                     item.quality = item.quality + 1;
                 }
             } else {
-                if (!isBackstagePass(item)) {
+                if (isBackstagePass(item)) {
+                    item.quality = 0;
+                } else {
                     if (item.quality > 0) {
                         if (!isGoldCoin(item)) {
                             item.quality = item.quality - 1;
                         }
                     }
-                } else {
-                    item.quality = 0;
                 }
             }
         }
