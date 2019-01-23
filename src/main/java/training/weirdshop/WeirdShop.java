@@ -9,10 +9,10 @@ class WeirdShop {
 
     void updateQuality() {
         for (Item item : items) {
-            if (!item.name.equals("Aged Brie")
-                    && !item.name.equals("Backstage Pass")) {
+            if (!isAgedBrie(item)
+                    && !isBackstagePass(item)) {
                 if (item.quality > 0) {
-                    if (!item.name.equals("Gold Coin")) {
+                    if (!isGoldCoin(item)) {
                         item.quality = item.quality - 1;
                     }
                 }
@@ -20,7 +20,7 @@ class WeirdShop {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
 
-                    if (item.name.equals("Backstage Pass")) {
+                    if (isBackstagePass(item)) {
                         if (item.sellIn < 12) {
                             if (item.quality < 50) {
                                 item.quality = item.quality + 1;
@@ -36,15 +36,15 @@ class WeirdShop {
                 }
             }
 
-            if (!item.name.equals("Gold Coin")) {
+            if (!isGoldCoin(item)) {
                 item.sellIn = item.sellIn - 1;
             }
 
             if (item.sellIn < 0) {
-                if (!item.name.equals("Aged Brie")) {
-                    if (!item.name.equals("Backstage Pass")) {
+                if (!isAgedBrie(item)) {
+                    if (!isBackstagePass(item)) {
                         if (item.quality > 0) {
-                            if (!item.name.equals("Gold Coin")) {
+                            if (!isGoldCoin(item)) {
                                 item.quality = item.quality - 1;
                             }
                         }
@@ -58,5 +58,17 @@ class WeirdShop {
                 }
             }
         }
+    }
+
+    private boolean isAgedBrie(Item item) {
+        return item.name.equals("Aged Brie");
+    }
+
+    private boolean isBackstagePass(Item item) {
+        return item.name.equals("Backstage Pass");
+    }
+
+    private boolean isGoldCoin(Item item) {
+        return item.name.equals("Gold Coin");
     }
 }
