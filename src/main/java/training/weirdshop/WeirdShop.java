@@ -47,7 +47,10 @@ class WeirdShop {
     }
 
     private void updateBackstagePassQuality(Item item) {
-        if (item.sellIn <= 5) {
+        if (item.sellIn < 0) {
+            item.quality = 0;
+        }
+        else if (item.sellIn <= 5) {
             item.quality = item.quality + 3;
         }
         else if (item.sellIn <= 10) {
@@ -55,9 +58,6 @@ class WeirdShop {
         }
         else {
             item.quality = item.quality + 1;
-        }
-        if (item.sellIn < 0) {
-            item.quality = 0;
         }
     }
 
