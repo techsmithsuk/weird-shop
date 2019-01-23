@@ -9,6 +9,10 @@ class WeirdShop {
 
     void updateQuality() {
         for (Item item : items) {
+            if (!isGoldCoin(item)) {
+                item.sellIn = item.sellIn - 1;
+            }
+
             if (!isAgedBrie(item)
                     && !isBackstagePass(item)) {
                 if (item.quality > 0) {
@@ -21,23 +25,19 @@ class WeirdShop {
                     item.quality = item.quality + 1;
 
                     if (isBackstagePass(item)) {
-                        if (item.sellIn < 12) {
+                        if (item.sellIn < 11) {
                             if (item.quality < 50) {
                                 item.quality = item.quality + 1;
                             }
                         }
 
-                        if (item.sellIn < 7) {
+                        if (item.sellIn < 6) {
                             if (item.quality < 50) {
                                 item.quality = item.quality + 1;
                             }
                         }
                     }
                 }
-            }
-
-            if (!isGoldCoin(item)) {
-                item.sellIn = item.sellIn - 1;
             }
 
             if (item.sellIn < 0) {
